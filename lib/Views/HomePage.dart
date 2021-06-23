@@ -1,341 +1,224 @@
-
- import 'package:flutter/cupertino.dart';
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:dummy/Views/Widget/Avathar.dart';
+import 'package:dummy/Views/Widget/CustomBgImageContainer.dart';
+import 'package:dummy/Views/Widget/CustomContainer.dart';
+import 'package:dummy/Views/Widget/CustPadding.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'Widget/CustomCard.dart';
+import 'Widget/CustomText.dart';
 
-class HomePage extends StatelessWidget{
+class HomePage extends StatelessWidget {
+
+  // final autoSizeGroup = AutoSizeGroup();
+
+
+  var _bottomNavIndex = 0;
+  final iconList = <IconData>[
+    Icons.brightness_5,
+    Icons.brightness_4,
+    Icons.calendar_today_outlined,
+  ];
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: <Widget>[
-          Container(
-            color: Colors.black,
+        // bottomNavigationBar: AnimatedBottomNavigationBar.builder(backgroundColor: Colors.greenAccent,
+        //     itemCount: 2,
+        //     tabBuilder:  (int index, bool isActive) {
+        //       final color = isActive ? Colors.grey : Colors.white;
+        //       return Column(
+        //         mainAxisSize: MainAxisSize.min,
+        //         mainAxisAlignment: MainAxisAlignment.center,
+        //         children: [
+        //           IconButton(
+        //             alignment: Alignment.centerRight,
+        //             iconSize: 25,
+        //             icon: new Image.asset(
+        //               'assets/images/bell.png',
+        //               width: 25,
+        //             ),
+        //             tooltip: 'message',
+        //             onPressed: () {},
+        //           ),
+        //           Icon(
+        //             iconList[index],
+        //             size: 24,
+        //             color: color,
+        //           ),
+        //           // const SizedBox(height: 4),
+        //           // Padding(
+        //           //   padding: const EdgeInsets.symmetric(horizontal: 8),
+        //           //   child: AutoSizeText(
+        //           //     "brightness $index",
+        //           //     maxLines: 1,
+        //           //     style: TextStyle(color: color),
+        //           //     // group: AutoSizeGroup(),
+        //           //   ),
+        //           // )
+        //         ],
+        //       );
+        //     },
+        //   onTap: (int ) {  },
+        //   activeIndex: _bottomNavIndex,
+        //
+        //   // onTap: (index) => setState(() => _bottomNavIndex = index)
+        //     ),
+        backgroundColor: Colors.white,
+        body: ListView(children: <Widget>[
+          CustomContainer(
+            paddingLeft: 20,
+            paddingTop: 40,
+            paddingRight: 20,
+            paddingBottom: 20,
+            backgroundColor: Colors.black,
             child: Column(
               children: [
-                SizedBox(
-                  height: 20,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                      alignment: Alignment.centerRight,
+                      iconSize: 25,
+                      icon: new Image.asset(
+                        'assets/images/bell.png',
+                        width: 25,
+                      ),
+                      tooltip: 'message',
+                      onPressed: () {},
+                    ),
+                    Avathar(
+                      paddingLeft: 5,
+                      radius: 30,
+                      bgimage: 'assets/images/avathar.png',
+                    ),
+                  ],
                 ),
                 Row(
                   children: [
-                    SizedBox(
-                      width: 230,
+                    Column(
+                      children: [
+                        CustomText(
+                          text: "Available balance",
+                          textColor: Colors.white,
+                          size: 14,
+                        ),
+                        CustomText(
+                          text: "\$1550.00",
+                          textColor: Colors.white,
+                          size: 25,
+                          paddingTop: 10,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                CustPadding(
+                  top: 56,
+                  left: 5,
+                  right: 5,
+                  bottom: 25,
+                  child: Image.asset(
+                    "assets/images/view.png",
+                    alignment: Alignment.center,
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomText(
+                      text: "Drage down to see more",
+                      size: 15,
+                      textColor: Colors.white,
+                      alignment: MainAxisAlignment.center,
                     ),
                     IconButton(
+                      splashRadius: 2,
                       icon: Icon(
-                        Icons.add_alert,
-                        color: Colors.white,
+                        Icons.arrow_drop_down_sharp,
+                        color: Colors.white60,
+                        size: 25,
                       ),
                       onPressed: () {
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                  backgroundColor:
-                                  Colors.green[200]!.withOpacity(.3),
-                                  content: Container(
-                                    width: 10, height: 100,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              bottom: 8.0, top: 10, left: 10),
-                                          child: Container(
-                                            child: Text(
-                                              "Save",
-                                              style: TextStyle(
-                                                  color: Colors.white60,
-                                                  fontWeight: FontWeight.bold),
-                                              textScaleFactor: 1.0,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              bottom: 8.0, top: 10, left: 10),
-                                          child: Container(
-                                            child: Text(
-                                              "Share",
-                                              style: TextStyle(
-                                                  color: Colors.white60,
-                                                  fontWeight: FontWeight.bold),
-                                              textScaleFactor: 1.0,
-                                            ),
-                                            // height: 20,
-                                          ),
-                                        ),
-                                        // Container(height: 1,color: Colors.grey,),
-                                      ],
-                                    ),
-                                  ));
-                            });
+                        print("Clicked");
                       },
                     ),
-                    Container(
-                        child: CircleAvatar(
-                          radius: 30,
-                          backgroundImage: AssetImage(
-                            'assets/images/avathar.png',
-                          ),
-                        ))
                   ],
-                ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                      child: Text(
-                        "Available balance",
-                        style: TextStyle(color: Colors.white, fontSize: 14),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
-                      child: Text(
-                        "\$1550.00",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ],
-                ),
-                Stack(children: <Widget>[
-                  // Center(child: Image.asset("assets/images/view.png",alignment: Alignment.center,)),
-                  SizedBox(
-                    height: 2,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Image.asset(
-                      "assets/images/view.png",
-                      alignment: Alignment.center,
-                    ),
-                  ),
-                ]),
-                Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Drage down to see more",
-                        style: TextStyle(fontSize: 15, color: Colors.white),
-                      ),
-                      IconButton(
-                        icon: Icon(
-                          Icons.arrow_drop_down_sharp,
-                          color: Colors.white60,
-                        ),
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 40,
                 ),
               ],
             ),
           ),
-
-          SizedBox(
-            height: 15,
-          ),
-
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 20, 10, 10),
-            child: Text(
-              "News Feed",
-              style: TextStyle(
-                  fontSize: 30,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
+          CustPadding(
+            padding: 8,
+            child: Image.asset(
+              "assets/images/line.png",
+              alignment: Alignment.center,
             ),
           ),
-
-          Card(
-            margin: EdgeInsets.all(10),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),),
-            child: Column(
-              children: <Widget>[
-                Stack(
-                  children: [
-                    Container(
-                        margin: EdgeInsets.all(20),
-                        height: 230,
-                        decoration: new BoxDecoration(
-                            borderRadius:
-                            BorderRadius.all(Radius.circular(20.0)),
-                            shape: BoxShape.rectangle,
-                            image: new DecorationImage(
-                                fit: BoxFit.fill,
-                                image: AssetImage("assets/images/news.png")))),
-                    Positioned(
-                      top: 30.0,
-                      left: 240.0,
-                      right: 30.0,
-                      child: Card(
-                        elevation: 20.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        child: Column(
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                              child: Text(
-                                "25",
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 5, 0, 10),
-                              child: Text(
-                                "JUNE",
-                                style: TextStyle(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.w500
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                      child: Text(
-                        "Third Edition of the 60FT Dhow ",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 0, 0, 20),
-                      child: Text("Dalma Race",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 0, 0, 30),
-                      child: Container(width: 300,
-                        child: Text("Under the patronage of His Highness Sheikh Hamdan Bin Zayed Al Nahyan, Ruler's...More",
-                          maxLines: 2,
-                          // overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14,),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    // mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      IconButton(padding: EdgeInsets.fromLTRB(15, 0,5, 0),
-                        icon: new Image.asset('assets/images/heart.png',width: 25,),
-                        tooltip: 'message', onPressed: () {  },
-                      ),
-                      Text(
-                        "20",
-                        style: TextStyle(fontSize: 15, color: Colors.black),
-                      ),
-                      IconButton(padding: EdgeInsets.fromLTRB(20, 0, 5, 0),
-                        icon: new Image.asset('assets/images/message.png',width: 25,),
-                        tooltip: 'message', onPressed: () {  },
-                      ),
-                      Text(
-                        "20",
-                        style: TextStyle(fontSize: 15, color: Colors.black,),
-                      ),
-                      IconButton(padding: EdgeInsets.fromLTRB(15, 0, 5, 0),
-                        icon: new Image.asset('assets/images/share.png',width: 25,),
-                        tooltip: 'share', onPressed: () {  },
-                      ),
-                      Text(
-                        "20",
-                        style: TextStyle(fontSize: 15, color: Colors.black),
-                      ),
-                      IconButton(iconSize: 25,padding: EdgeInsets.fromLTRB(70, 0,0, 0),
-                        icon:Icon(  Icons.web_asset_rounded),
-                        tooltip: 'message', onPressed: () {  },
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            elevation: 20,
+          CustomText(
+            text: "News Feed",
+            size: 25,
+            padding: 20,
+            fontWeight: FontWeight.bold,
           ),
-
-          Card(
-            margin: EdgeInsets.all(10),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),),
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
+          newsView(
+            "assets/images/news.png",
+            CustomCard(
+              elevation: 20.0,
+              radius: 10,
               child: Column(
                 children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 250, 20),
-                    child: Stack(children: <Widget>[Image.asset("assets/images/user.png")],),
+                  CustomText(
+                    paddingTop: 10,
+                    text: "25",
+                    size: 20,
+                    fontWeight: FontWeight.bold,
+                    alignment: MainAxisAlignment.center,
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        "Request for your first license ",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ],
+                  CustomText(
+                    paddingBottom: 10,
+                    text: "JUNE",
+                    size: 20,
+                    fontWeight: FontWeight.w500,
+                    alignment: MainAxisAlignment.center,
                   ),
-                  Row(
-                    children: [
-                      Text("License is necessary to join the events",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 15,),
-                      ),
-
-                    ],
+                ],
+              ),
+            ),
+          ),
+          CustomCard(
+            margin: 10,
+            child: CustPadding(
+              padding: 20,
+              child: Column(
+                children: <Widget>[
+                  CustPadding(
+                    // mainAxisAlignment:MainAxisAlignment.start,
+                    bottom: 20,
+                    right: 220,
+                    child: Stack(
+                      alignment: Alignment.topLeft,
+                      children: <Widget>[
+                        Image.asset(
+                          "assets/images/avatharg.png",
+                          width: 70,
+                        )
+                      ],
+                    ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                  CustomText(
+                      text: "Request for your first license ",
+                      size: 20,
+                      fontWeight: FontWeight.bold),
+                  CustomText(
+                      text: "License is necessary to join the events",
+                      size: 15,
+                      textColor: Colors.grey,
+                      fontWeight: FontWeight.bold),
+                  CustPadding(
+                    top: 20,
                     child: Row(
                       children: [
                         ElevatedButton(
@@ -343,27 +226,26 @@ class HomePage extends StatelessWidget{
                             primary: Colors.black, // background
                             onPrimary: Colors.white, // foreground
                           ),
-                          onPressed: () { },
+                          onPressed: () {},
                           child: Text('Requset Now'),
                         ),
-                        SizedBox(width: 120,),
+                        SizedBox(
+                          width: 120,
+                        ),
                         Expanded(
-                          child:
-                          Column(
+                          child: Column(
                             children: [
                               TextButton(
                                 style: ButtonStyle(
-                                  foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                                  foregroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.black),
                                 ),
-                                onPressed: () { },
-                                child: Text('Later',),
+                                onPressed: () {},
+                                child: Text(
+                                  'Later',
+                                ),
                               ),
-                              // Padding(
-                              //   padding: const EdgeInsets.all(1),
-                              //   child: Divider(
-                              //       color: Colors.black
-                              //   ),
-                              // )
                             ],
                           ),
                         ),
@@ -373,141 +255,183 @@ class HomePage extends StatelessWidget{
                 ],
               ),
             ),
-            elevation: 20,
           ),
-
-          Card(
-            margin: EdgeInsets.all(10),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),),
+          newsView(
+            "assets/images/sea.png",
+            IconButton(
+              iconSize: 60,
+              icon: Icon(
+                Icons.play_circle_fill,
+                color: Colors.white,
+              ),
+              tooltip: 'message',
+              onPressed: () {},
+            ),
+          ),
+          CustomContainerWithBgImage(
+            height: 350,
+            image: "assets/images/images.png",
+            margin: 10,
+          ),
+          CustomCard(
+            padding: 10,
             child: Column(
               children: <Widget>[
-                Stack(
-                  children: [
-                    Container(
-                        margin: EdgeInsets.all(20),
-                        height: 230,
-                        decoration: new BoxDecoration(
-                            borderRadius:
-                            BorderRadius.all(Radius.circular(20.0)),
-                            shape: BoxShape.rectangle,
-                            image: new DecorationImage(
-                                fit: BoxFit.fill,
-                                image: AssetImage("assets/images/sea.png")))),
-                    Positioned(
-                      top: 20.0,
-                      left: 240.0,
-                      right: 20.0,
-                      child:  IconButton(iconSize: 60,
-                        icon:Icon(  Icons.play_circle_fill),
-                        tooltip: 'message', onPressed: () {  },
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 0, 0, 20),
-                      child: Container(width: 300,
-                        child: Text(
-                          "Third Edition of the 60FT Dhow Dalma Race ", maxLines: 2,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 0, 0, 30),
-                      child: Container(width: 300,
-                        child: Text("Under the patronage of His Highness Sheikh Hamdan Bin Zayed Al Nahyan, Ruler's...More",
-                          maxLines: 2,
-                          // overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14,),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                CustomContainerWithBgImage(
+                  height: 220,
+                  // width: MediaQuery.of(context).size.width,
                   child: Row(
-                    // mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      IconButton(padding: EdgeInsets.fromLTRB(15, 0,5, 0),
-                        icon: new Image.asset('assets/images/heart.png',width: 25,),
-                        tooltip: 'message', onPressed: () {  },
+                    children: <Widget>[
+                      Image.asset(
+                        "assets/images/imagesga.png",
+                        alignment: Alignment.centerLeft,
                       ),
-                      Text(
-                        "20",
-                        style: TextStyle(fontSize: 15, color: Colors.black),
-                      ),
-                      IconButton(padding: EdgeInsets.fromLTRB(20, 0, 5, 0),
-                        icon: new Image.asset('assets/images/message.png',width: 25,),
-                        tooltip: 'message', onPressed: () {  },
-                      ),
-                      Text(
-                        "20",
-                        style: TextStyle(fontSize: 15, color: Colors.black,),
-                      ),
-                      IconButton(padding: EdgeInsets.fromLTRB(15, 0, 5, 0),
-                        icon: new Image.asset('assets/images/share.png',width: 25,),
-                        tooltip: 'share', onPressed: () {  },
-                      ),
-                      Text(
-                        "20",
-                        style: TextStyle(fontSize: 15, color: Colors.black),
-                      ),
-                      IconButton(iconSize: 25,padding: EdgeInsets.fromLTRB(70, 0,0, 0),
-                        icon:Icon(  Icons.web_asset_rounded),
-                        tooltip: 'message', onPressed: () {  },
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          // Image.asset("assets/images/imagesga.png",alignment:Alignment.centerLeft ,) ,
+                          CustomContainerWithBgImage(
+                              image: "assets/images/imagesc.png",
+                              width: MediaQuery.of(context).size.width / 2 - 7,fit: BoxFit.cover,
+                              height: MediaQuery.of(context).size.width / 3 - 10),
+
+                          CustomContainerWithBgImage(
+                            image: "assets/images/imagesgb.png",fit: BoxFit.cover,
+                            width: MediaQuery.of(context).size.width / 2 - 10,
+                            height: MediaQuery.of(context).size.width / 3 - 10,
+                            // height: MediaQuery.removePadding(context: context, removeBottom: true,)
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ),
+                CustPadding(
+                  padding: 20,
+                  child: Text(
+                    "Third Edition of the 60FT Dhow Dalma Race",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                CustPadding(
+                  left: 20,
+                  right: 20,
+                  child: Text(
+                    "Under the patronage of His Highness Sheikh Hamdan Bin Zayed Al Nahyan, Ruler's...More",
+                    style: TextStyle(color: Colors.grey, fontSize: 15),
+                  ),
+                ),
+                newsBottomView(),
               ],
             ),
-            elevation: 20,
+          )
+        ]));
+  }
+
+  CustomCard newsView(String image, Widget child) {
+    return CustomCard(
+      padding: 10,
+      child: Column(
+        children: <Widget>[
+          Stack(
+            children: [
+              CustomContainerWithBgImage(
+                margin: 15,
+                height: 230,
+                radius: 10,
+                fit: BoxFit.fill,
+                // boxShape: BoxShape.circle,
+                image: image,
+              ),
+              Positioned(top: 30.0, left: 240.0, right: 30.0, child: child),
+            ],
           ),
+          CustPadding(
+            padding: 20,
+            child: Text(
+              "Third Edition of the 60FT Dhow Dalma Race",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+          ),
+          CustPadding(
+            left: 20,
+            right: 20,
+            child: Text(
+              "Under the patronage of His Highness Sheikh Hamdan Bin Zayed Al Nahyan, Ruler's...More",
+              style: TextStyle(color: Colors.grey, fontSize: 15),
+            ),
+          ),
+          newsBottomView(),
         ],
       ),
     );
   }
 
+  CustPadding newsBottomView() {
+    EdgeInsetsGeometry padding = EdgeInsets.fromLTRB(20, 0, 5, 0);
+    double splashRadius = 25;
+    double iconSize = 25;
+
+    return CustPadding(
+      padding: 8,
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          IconButton(
+            splashRadius: splashRadius,
+            padding: padding,
+            icon: new Image.asset(
+              'assets/images/likes.png',
+            ),
+            iconSize: iconSize,
+            tooltip: 'message',
+            onPressed: () {},
+          ),
+          CustomText(
+            text: "20",
+            size: 15,
+          ),
+          IconButton(
+            splashRadius: splashRadius,
+            iconSize: iconSize,
+            padding: padding,
+            icon: new Image.asset(
+              'assets/images/message.png',
+            ),
+            tooltip: 'message',
+            onPressed: () {},
+          ),
+          CustomText(
+            text: "20",
+            size: 15,
+          ),
+          IconButton(
+            splashRadius: splashRadius,
+            iconSize: iconSize,
+            padding: padding,
+            icon: new Image.asset(
+              'assets/images/share.png',
+              width: 25,
+            ),
+            tooltip: 'share',
+            onPressed: () {},
+          ),
+          CustomText(
+            text: "20",
+            size: 15,
+          ),
+          IconButton(
+            iconSize: 20,
+            splashRadius: splashRadius,
+            padding: EdgeInsets.fromLTRB(80, 0, 0, 0),
+            icon: new Image.asset(
+              'assets/images/save.png',
+            ),
+            tooltip: 'message',
+            onPressed: () {},
+          ),
+        ],
+      ),
+    );
+  }
 }
-
-
- class Textwid extends StatefulWidget {
-   const Textwid({
-     Key? key,
-   }) : super(key: key);
-
-   @override
-   _TextwidState createState() => _TextwidState();
- }
-
- class _TextwidState extends State<Textwid> {
-   @override
-   Widget build(BuildContext context) {
-     return TextField(onChanged:(String str){
-       // setState(() {
-       //   name=str;
-       // });
-     },
-         // style: style,
-         decoration: InputDecoration(
-             contentPadding:
-             EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-             hintText: "User name",
-             border: OutlineInputBorder(
-                 borderRadius: BorderRadius.circular(32.0))));
-   }
- }
