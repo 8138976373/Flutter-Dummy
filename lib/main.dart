@@ -1,3 +1,4 @@
+import 'package:dummy/Views/HomePage.dart';
 import 'package:dummy/Views/login.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'News Feed',
-      home: Login(),
+      home: HomePage(),
       debugShowCheckedModeBanner: false,
     );
   }
