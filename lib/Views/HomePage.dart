@@ -292,12 +292,11 @@ class HomePage extends StatelessWidget {
                           // Image.asset("assets/images/imagesga.png",alignment:Alignment.centerLeft ,) ,
                           CustomContainerWithBgImage(
                               image: "assets/images/imagesc.png",
-                              width: MediaQuery.of(context).size.width / 2 - 7,
-                              height:
-                                  MediaQuery.of(context).size.width / 3 - 10),
+                              width: MediaQuery.of(context).size.width / 2 - 7,fit: BoxFit.cover,
+                              height: MediaQuery.of(context).size.width / 3 - 10),
 
                           CustomContainerWithBgImage(
-                            image: "assets/images/imagesgb.png",
+                            image: "assets/images/imagesgb.png",fit: BoxFit.cover,
                             width: MediaQuery.of(context).size.width / 2 - 10,
                             height: MediaQuery.of(context).size.width / 3 - 10,
                             // height: MediaQuery.removePadding(context: context, removeBottom: true,)
