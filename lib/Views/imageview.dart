@@ -9,8 +9,10 @@ import 'package:get/get_core/src/get_main.dart';
 class ImageView extends StatelessWidget {
   final ImageController imageController = Get.put(ImageController());
 
+
   @override
   Widget build(BuildContext context) {
+    imageController.fetchImages();
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -40,8 +42,7 @@ class ImageView extends StatelessWidget {
                         fontWeight: FontWeight.w900),
                   ),
                 ),
-                IconButton(
-                    icon: Icon(Icons.view_list_rounded), onPressed: () {}),
+               
                 IconButton(icon: Icon(Icons.grid_view), onPressed: () {}),
               ],
             ),
