@@ -1,9 +1,10 @@
-import 'package:dummy/Views/HomePage.dart';
-import 'package:dummy/Views/Widget/CustPadding.dart';
+import 'package:dummy/Views/homepage.dart';
+import 'package:dummy/Widget/Avathar.dart';
+import 'package:dummy/Widget/CustPadding.dart';
+import 'package:dummy/Widget/CustomBgImageContainer.dart';
+import 'package:dummy/services/apicall.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'Widget/Avathar.dart';
-import 'Widget/CustomBgImageContainer.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -16,56 +17,69 @@ class __LoginState extends State<Login> {
   final phoneController = TextEditingController();
   final nameController = TextEditingController();
 
+
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    ApiCall.fetchImages();
+  }
+
+  @override
+  Widget build(BuildContext context)
+  {
+
     return Scaffold(
         body: SingleChildScrollView(
-      // child: CustomContainerWithBgImage(
-      //   image: "assets/images/news.png",
-      //   fit: BoxFit.cover,
-      //
-      //   child: Column(children: <Widget>[
-      //     CustPadding(
-      //       padding: 36,
-      //       child: Column(
-      //         crossAxisAlignment: CrossAxisAlignment.center,
-      //         mainAxisAlignment: MainAxisAlignment.center,
-      //         children: <Widget>[
-      //           CustPadding(
-      //             child:
-      //                 Avathar(image: "assets/images/avathar.png", radius: 50),
-      //             left: 20,
-      //             right: 20,
-      //             top: 40,
-      //             bottom: 30,
-      //           ),
-      //
-      //           SizedBox(
-      //             height: 35.0,
-      //           ),
-      //
-      //           Column(
-      //             children: [
-      //               NameField("user"),
-      //
-      //               SizedBox(height: 25.0),
-      //
-      //               PasswordField("password"),
-      //             ],
-      //           ),
-      //
-      //           SizedBox(
-      //             height: 35.0,
-      //           ),
-      //
-      //           MaterialButtonCust(context, "Login", 0xff01c78f),
-      //         ],
-      //       ),
-      //     ),
-      //   ]),
-      // ),
+      child: CustomContainerWithBgImage(
+        image: "assets/images/news.png",
+        fit: BoxFit.cover,
+
+        child: Column(children: <Widget>[
+          CustPadding(
+            padding: 36,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                CustPadding(
+                  child:
+                      Avathar(bgimage: "assets/images/avathar.png", radius: 50),
+                  left: 20,
+                  right: 20,
+                  top: 40,
+                  bottom: 30,
+                ),
+
+                SizedBox(
+                  height: 35.0,
+                ),
+
+                Column(
+                  children: [
+                    NameField("user"),
+
+                    SizedBox(height: 25.0),
+
+                    PasswordField("password"),
+                  ],
+                ),
+
+                SizedBox(
+                  height: 35.0,
+                ),
+
+                MaterialButtonCust(context, "Login", 0xff01c78f),
+              ],
+            ),
+          ),
+        ]),
+      ),
     ));
+
   }
+
+
 
   MaterialButton MaterialButtonCust(BuildContext context, String text_string, int i) {
     return MaterialButton(

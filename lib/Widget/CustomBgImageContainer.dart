@@ -1,4 +1,3 @@
-import 'package:dummy/Views/Widget/CustomCard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -135,7 +134,7 @@ class CustomContainerWithBgImage extends StatelessWidget {
 
   double? setRadius() {
     if (this.radius == 0 || this.radius == null ) {
-      return this.radius = 10.0;
+      return this.radius = 0.0;
     } else {
       return this.radius;
     }

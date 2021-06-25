@@ -1,12 +1,13 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:dummy/Views/Widget/Avathar.dart';
-import 'package:dummy/Views/Widget/CustomBgImageContainer.dart';
-import 'package:dummy/Views/Widget/CustomContainer.dart';
-import 'package:dummy/Views/Widget/CustPadding.dart';
+import 'package:dummy/Widget/Avathar.dart';
+import 'package:dummy/Widget/CustPadding.dart';
+import 'package:dummy/Widget/CustomBgImageContainer.dart';
+import 'package:dummy/Widget/CustomCard.dart';
+import 'package:dummy/Widget/CustomContainer.dart';
+import 'package:dummy/Widget/CustomText.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'Widget/CustomCard.dart';
-import 'Widget/CustomText.dart';
+
 
 class HomePage extends StatelessWidget {
 
@@ -17,31 +18,33 @@ class HomePage extends StatelessWidget {
   final iconList = <IconData>[
     Icons.brightness_5,
     Icons.brightness_4,
+    Icons.brightness_4,
     Icons.calendar_today_outlined,
   ];
 
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-        // bottomNavigationBar: AnimatedBottomNavigationBar.builder(backgroundColor: Colors.greenAccent,
-        //     itemCount: 2,
+        // bottomNavigationBar: AnimatedBottomNavigationBar.builder(backgroundColor: Colors.black,
+        //     itemCount:4 ,
         //     tabBuilder:  (int index, bool isActive) {
         //       final color = isActive ? Colors.grey : Colors.white;
         //       return Column(
         //         mainAxisSize: MainAxisSize.min,
         //         mainAxisAlignment: MainAxisAlignment.center,
         //         children: [
-        //           IconButton(
-        //             alignment: Alignment.centerRight,
-        //             iconSize: 25,
-        //             icon: new Image.asset(
-        //               'assets/images/bell.png',
-        //               width: 25,
-        //             ),
-        //             tooltip: 'message',
-        //             onPressed: () {},
-        //           ),
+        //           // Icon(
+        //           //   alignment: Alignment.centerRight,
+        //           //   iconSize: 25,
+        //           //   icon: new Image.asset(
+        //           //     'assets/images/bell.png',
+        //           //     width: 25,
+        //           //   ),
+        //           //   tooltip: 'message',
+        //           //   onPressed: () {},
+        //           // ),
         //           Icon(
         //             iconList[index],
         //             size: 24,
@@ -65,8 +68,10 @@ class HomePage extends StatelessWidget {
         //
         //   // onTap: (index) => setState(() => _bottomNavIndex = index)
         //     ),
+
         backgroundColor: Colors.white,
         body: ListView(children: <Widget>[
+
           CustomContainer(
             paddingLeft: 20,
             paddingTop: 40,
@@ -166,27 +171,27 @@ class HomePage extends StatelessWidget {
           newsView(
             "assets/images/news.png",
             CustomCard(
-              elevation: 20.0,
-              radius: 10,
-              child: Column(
-                children: <Widget>[
-                  CustomText(
-                    paddingTop: 10,
-                    text: "25",
-                    size: 20,
-                    fontWeight: FontWeight.bold,
-                    alignment: MainAxisAlignment.center,
-                  ),
-                  CustomText(
-                    paddingBottom: 10,
-                    text: "JUNE",
-                    size: 20,
-                    fontWeight: FontWeight.w500,
-                    alignment: MainAxisAlignment.center,
-                  ),
-                ],
+                elevation: 20.0,
+                radius: 10,
+                child: Column(
+                  children: <Widget>[
+                    CustomText(
+                      paddingTop: 10,
+                      text: "25",
+                      size: 20,
+                      fontWeight: FontWeight.bold,
+                      alignment: MainAxisAlignment.center,
+                    ),
+                    CustomText(
+                      paddingBottom: 10,
+                      text: "JUNE",
+                      size: 20,
+                      fontWeight: FontWeight.w500,
+                      alignment: MainAxisAlignment.center,
+                    ),
+                  ],
+                ),
               ),
-            ),
           ),
           CustomCard(
             margin: 10,
@@ -256,23 +261,26 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
+
           newsView(
             "assets/images/sea.png",
             IconButton(
               iconSize: 60,
               icon: Icon(
                 Icons.play_circle_fill,
-                color: Colors.white,
+                color: Colors.black,
               ),
               tooltip: 'message',
               onPressed: () {},
             ),
           ),
+
           CustomContainerWithBgImage(
             height: 350,
             image: "assets/images/images.png",
             margin: 10,
           ),
+
           CustomCard(
             padding: 10,
             child: Column(
@@ -281,19 +289,19 @@ class HomePage extends StatelessWidget {
                   height: 220,
                   // width: MediaQuery.of(context).size.width,
                   child: Row(
+                    // mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       Image.asset(
-                        "assets/images/imagesga.png",
-                        alignment: Alignment.centerLeft,
+                        "assets/images/imagesga.png", fit: BoxFit.cover,
                       ),
                       Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           // Image.asset("assets/images/imagesga.png",alignment:Alignment.centerLeft ,) ,
                           CustomContainerWithBgImage(
                               image: "assets/images/imagesc.png",
                               width: MediaQuery.of(context).size.width / 2 - 7,fit: BoxFit.cover,
-                              height: MediaQuery.of(context).size.width / 3 - 10),
+                              height:110
+                          ),
 
                           CustomContainerWithBgImage(
                             image: "assets/images/imagesgb.png",fit: BoxFit.cover,
@@ -313,6 +321,7 @@ class HomePage extends StatelessWidget {
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
+
                 CustPadding(
                   left: 20,
                   right: 20,
@@ -353,6 +362,7 @@ class HomePage extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
+
           CustPadding(
             left: 20,
             right: 20,

@@ -1,6 +1,8 @@
-import 'package:dummy/Views/HomePage.dart';
+import 'package:dummy/Views/homepage.dart';
 import 'package:dummy/Views/login.dart';
 import 'package:flutter/material.dart';
+
+import 'Views/imageview.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'News Feed',
-      home: HomePage(),
+      home: ImageView(),
       debugShowCheckedModeBanner: false,
     );
   }
