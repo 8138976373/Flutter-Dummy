@@ -1,9 +1,11 @@
 
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:dummy/model/image.dart';
 
 class ApiCall{
-  static ApiCall apiRequest = new ApiCall();
+  // static ApiCall apiRequest = new ApiCall();
   static Future <List<Images>?> fetchImages () async {
     try {
       final _dioInstance = Dio();
@@ -11,8 +13,10 @@ class ApiCall{
       Response response = await _dioInstance.get('https://api.unsplash.com/photos');
       if (response.statusCode == 200) {
         var jsonString = response.data;
-        print(jsonString);
-        return imageFromJson(jsonString);
+        var jsondata = json.encode(jsonString);
+
+        print(jsonString.toString());
+        return imageFromJson(jsondata);
       } else {
         //show error message
         return null;
