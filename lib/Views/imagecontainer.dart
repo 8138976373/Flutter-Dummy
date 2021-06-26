@@ -1,14 +1,16 @@
 import 'package:dummy/model/image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class ImageContainer extends StatelessWidget {
    final Images images;
+
   const ImageContainer(this.images);
+
 
   @override
   Widget build(BuildContext context) {
+    var url = images.urls!.full;
     return Card(
       elevation: 2,
       child: Padding(
@@ -25,28 +27,11 @@ class ImageContainer extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
                   ),
-                  // child: Image.network(
-                  //   images.color!,
-                  //   fit: BoxFit.cover,
-                  // ),
+                  child: Image.network(
+                    url!,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-                // Positioned(
-                //   right: 0,
-                //   child: Obx(() => CircleAvatar(
-                //     backgroundColor: Colors.white,
-                //     child:
-                //
-                //
-                //     // IconButton(
-                //     //   icon: images.height!
-                //     //       ? Icon(Icons.favorite_rounded)
-                //     //       : Icon(Icons.favorite_border),
-                //     //   onPressed: () {
-                //     //     images.isFavorite.toggle();
-                //     //   },
-                //     // ),
-                //   )),
-                // )
               ],
             ),
             SizedBox(height: 8),

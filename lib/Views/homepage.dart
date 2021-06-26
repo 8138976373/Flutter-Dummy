@@ -25,6 +25,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
 
     return Scaffold(
         // bottomNavigationBar: AnimatedBottomNavigationBar.builder(backgroundColor: Colors.black,
@@ -305,8 +307,8 @@ class HomePage extends StatelessWidget {
 
                           CustomContainerWithBgImage(
                             image: "assets/images/imagesgb.png",fit: BoxFit.cover,
-                            width: MediaQuery.of(context).size.width / 2 - 10,
-                            height: MediaQuery.of(context).size.width / 3 - 10,
+                            width: screenWidth / 2 - 10,
+                            height: screenWidth/ 3 - 10,
                             // height: MediaQuery.removePadding(context: context, removeBottom: true,)
                           ),
                         ],

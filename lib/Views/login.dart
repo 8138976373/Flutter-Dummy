@@ -2,9 +2,11 @@ import 'package:dummy/Views/homepage.dart';
 import 'package:dummy/Widget/Avathar.dart';
 import 'package:dummy/Widget/CustPadding.dart';
 import 'package:dummy/Widget/CustomBgImageContainer.dart';
+import 'package:dummy/controller/imagecontroller.dart';
 import 'package:dummy/services/apicall.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -17,7 +19,6 @@ class __LoginState extends State<Login> {
   final phoneController = TextEditingController();
   final nameController = TextEditingController();
 
-
   @override
   void initState() {
     // TODO: implement initState
@@ -28,7 +29,6 @@ class __LoginState extends State<Login> {
   @override
   Widget build(BuildContext context)
   {
-
     return Scaffold(
         body: SingleChildScrollView(
       child: CustomContainerWithBgImage(
