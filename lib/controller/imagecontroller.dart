@@ -15,7 +15,7 @@ class ImageController extends GetxController {
   void fetchImages() async {
     try {
       isLoading(true);
-      var images = await  ApiCall.fetchImages();
+      var images = await  DioServices.getAPI();
       if (images != null) {
         imageList.value = images;
         print(images);
