@@ -161,8 +161,6 @@ class User {
     this.portfolioUrl,
     this.bio,
     this.location,
-    this.links,
-    this.profileImage,
     this.instagramUsername,
     this.totalCollections,
     this.totalLikes,
@@ -181,8 +179,6 @@ class User {
   String? portfolioUrl;
   String? bio;
   String? location;
-  UserLinks? links;
-  ProfileImage? profileImage;
   String? instagramUsername;
   int? totalCollections;
   int? totalLikes;
@@ -201,8 +197,6 @@ class User {
     portfolioUrl: json["portfolio_url"] == null ? null : json["portfolio_url"],
     bio: json["bio"] == null ? null : json["bio"],
     location: json["location"] == null ? null : json["location"],
-    links: UserLinks.fromJson(json["links"]),
-    profileImage: ProfileImage.fromJson(json["profile_image"]),
     instagramUsername: json["instagram_username"] == null ? null : json["instagram_username"],
     totalCollections: json["total_collections"],
     totalLikes: json["total_likes"],
@@ -222,8 +216,6 @@ class User {
     "portfolio_url": portfolioUrl == null ? null : portfolioUrl,
     "bio": bio == null ? null : bio,
     "location": location == null ? null : location,
-    "links": links!.toJson(),
-    "profile_image": profileImage!.toJson(),
     "instagram_username": instagramUsername == null ? null : instagramUsername,
     "total_collections": totalCollections,
     "total_likes": totalLikes,
@@ -233,69 +225,7 @@ class User {
   };
 }
 
-class UserLinks {
-  UserLinks({
-    this.self,
-    this.html,
-    this.photos,
-    this.likes,
-    this.portfolio,
-    this.following,
-    this.followers,
-  });
 
-  String? self;
-  String? html;
-  String? photos;
-  String? likes;
-  String? portfolio;
-  String? following;
-  String? followers;
-
-  factory UserLinks.fromJson(Map<String, dynamic> json) => UserLinks(
-    self: json["self"],
-    html: json["html"],
-    photos: json["photos"],
-    likes: json["likes"],
-    portfolio: json["portfolio"],
-    following: json["following"],
-    followers: json["followers"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "self": self,
-    "html": html,
-    "photos": photos,
-    "likes": likes,
-    "portfolio": portfolio,
-    "following": following,
-    "followers": followers,
-  };
-}
-
-class ProfileImage {
-  ProfileImage({
-    this.small,
-    this.medium,
-    this.large,
-  });
-
-  String? small;
-  String? medium;
-  String? large;
-
-  factory ProfileImage.fromJson(Map<String, dynamic> json) => ProfileImage(
-    small: json["small"],
-    medium: json["medium"],
-    large: json["large"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "small": small,
-    "medium": medium,
-    "large": large,
-  };
-}
 
 class Urls {
   Urls({
