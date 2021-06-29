@@ -11,17 +11,14 @@ class LoginPage extends StatelessWidget {
   final phoneController = TextEditingController();
   final nameController = TextEditingController();
 
-
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return Scaffold(
         body: SingleChildScrollView(
-
       child: CustomContainerWithBgImage(
+        height: MediaQuery.of(context).size.height,
         image: "assets/images/news.png",
         fit: BoxFit.cover,
-
         child: Column(children: <Widget>[
           CustPadding(
             padding: 36,
@@ -37,35 +34,32 @@ class LoginPage extends StatelessWidget {
                   top: 40,
                   bottom: 30,
                 ),
-
                 SizedBox(
                   height: 35.0,
                 ),
-
                 Column(
                   children: [
                     NameField("user"),
-
                     SizedBox(height: 25.0),
-
                     PasswordField("password"),
                   ],
                 ),
-
                 SizedBox(
                   height: 35.0,
                 ),
-
-                LoginButton( text:"Login"),
+                LoginButton(
+                  text: "Login",
+                  color: Colors.black,
+                  nameController: nameController,
+                  phoneController: phoneController,
+                ),
               ],
             ),
           ),
         ]),
       ),
     ));
-
   }
-  
 
   TextField PasswordField(String s) {
     return TextField(
@@ -77,12 +71,13 @@ class LoginPage extends StatelessWidget {
 
   TextField NameField(String s) {
     return TextField(
-      controller: nameController,
-      style: style,
-      decoration:InputDecoration( contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-    hintText: s,
-    border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-    ));
+        controller: nameController,
+        style: style,
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          hintText: s,
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+        ));
   }
 
   InputDecoration inputFieldDecoration(String s) {
@@ -96,66 +91,76 @@ class LoginPage extends StatelessWidget {
 class LoginButton extends StatefulWidget {
   Color? color;
   String? text;
-
-  LoginButton({required this.text,this.color,
+  TextEditingController? nameController;
+  TextEditingController? phoneController;
+  LoginButton({
+    required this.text,
+    this.color,
+    required this.nameController,
+    required this.phoneController,
     Key? key,
   }) : super(key: key);
-  Color? setColor(){
-    if (this.color == null)
-    {
+  Color? setColor() {
+    if (this.color == null) {
       return this.color = Colors.white24;
-    }else{
-      return this.color ;
+    } else {
+      return this.color;
     }
   }
 
-
   @override
-  _LoginButtonState createState() => _LoginButtonState(this.text,setColor());
+  _LoginButtonState createState() => _LoginButtonState(
+      this.text, setColor(), nameController!, phoneController!);
 }
 
 class _LoginButtonState extends State<LoginButton> {
-   TextEditingController nameController = new TextEditingController();
-   TextEditingController phoneController = new TextEditingController();
-   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0,color: Colors.white, fontWeight: FontWeight.bold);
+  TextEditingController nameController = new TextEditingController();
+  TextEditingController phoneController = new TextEditingController();
+  TextStyle style = TextStyle(
+      fontFamily: 'Montserrat',
+      fontSize: 20.0,
+      color: Colors.white,
+      fontWeight: FontWeight.bold);
 
   Color? color;
   String? text;
 
-  _LoginButtonState(this.text,this.color);
+  _LoginButtonState(
+      this.text, this.color, this.nameController, this.phoneController);
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      color: color,
-      minWidth: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-      onPressed: () {
-        if (nameController.text == "123" && phoneController.text == "123") {
-          setState(() {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomePage()),
-            );
-          });
-        } else {
-          final snackBar = SnackBar(
-            content: Text('User name or password error!!'),
-            action: SnackBarAction(
-              label: 'Undo',
-              onPressed: () {
-                Navigator.pop(context,MaterialPageRoute(builder: (context)=>HomePage()));
-                // Some code to undo the change.
-              },
-            ),
-          );
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        }
-        // child: Text('Show SnackBar'),
-      },
-      child: Text(text!,
-          textAlign: TextAlign.center,
-          style: style));
+        color: color,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20)), // <-- Radius
 
+        minWidth: MediaQuery.of(context).size.width,
+        padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+        onPressed: () {
+          if (nameController.text == "123" && phoneController.text == "123") {
+            setState(() {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage()),
+              );
+            });
+          } else {
+            final snackBar = SnackBar(
+              content: Text('User name or password error!!'),
+              action: SnackBarAction(
+                label: 'Undo',
+                onPressed: () {
+                  Navigator.pop(context,
+                      MaterialPageRoute(builder: (context) => HomePage()));
+                  // Some code to undo the change.
+                },
+              ),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          }
+          // child: Text('Show SnackBar'),
+        },
+        child: Text(text!, textAlign: TextAlign.center, style: style));
   }
 }

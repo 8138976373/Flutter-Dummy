@@ -10,13 +10,13 @@ class DioServices{
   );
   static Future <dynamic> getAPI () async{
     final _dioInstance = Dio(options);
-    _dioInstance.options.headers['Authorization'] =
-    'Client-ID L4slwGIywDElb1btpBrikJZpozksvydCo-B0OsjFYEU';
+    _dioInstance.options.headers['Authorization'] = 'Client-ID L4slwGIywDElb1btpBrikJZpozksvydCo-B0OsjFYEU';
     final response = await _dioInstance.request(options.baseUrl,options: Options(method: 'GET'));
+    print(response.data);
     if(response.statusCode == 200 ){
       var jsonString = response.data;
       var jsondata = json.encode(jsonString);
-      print(jsonString.toString());
+      // print(jsonString.toString());
       return imageFromJson(jsondata);
     }else{
 

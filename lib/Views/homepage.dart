@@ -1,7 +1,8 @@
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:dummy/Views/imageview.dart';
 import 'package:dummy/Widget/Avathar.dart';
 import 'package:dummy/Widget/CustPadding.dart';
 import 'package:dummy/Widget/CustomBgImageContainer.dart';
+import 'package:dummy/Widget/CustomButton.dart';
 import 'package:dummy/Widget/CustomCard.dart';
 import 'package:dummy/Widget/CustomContainer.dart';
 import 'package:dummy/Widget/CustomText.dart';
@@ -78,8 +79,6 @@ class _HomePageState extends State<HomePage> {
         ]));
   }
 
-
-
   CustomCard sixthView(BuildContext context, double screenWidth) {
     return CustomCard(
       padding: 10,
@@ -123,7 +122,8 @@ class _HomePageState extends State<HomePage> {
               fontWeight: FontWeight.bold),
           CustomText(
               padding: 20,
-              text: "Under the patronage of His Highness Sheikh \nHamdan Bin Zayed Al Nahyan, Ruler's...More",
+              text:
+                  "Under the patronage of His Highness Sheikh \nHamdan Bin Zayed Al Nahyan, Ruler's...More",
               textColor: Colors.grey,
               maxLines: 2,
               size: 15),
@@ -135,9 +135,55 @@ class _HomePageState extends State<HomePage> {
 
   CustomContainerWithBgImage fitfhView(String image) {
     return CustomContainerWithBgImage(
-      height: 350,
+      height: 400,
       image: image,
       margin: 10,
+      child: CustPadding(
+        padding: 25.0,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CustomText(
+              text: "JOIN MEMBERSHIP IN",
+              size: 18,
+              fontWeight: FontWeight.bold,
+              paddingBottom: 10,
+              paddingTop: 10,
+            ),
+            CustomText(
+              text: "50% DISCOUNT",
+              size: 35,
+              fontWeight: FontWeight.bold,
+              paddingBottom: 15,
+            ),
+            CustomText(
+              text:
+                  "Lorem ipsum dolor sit amet, consectetur\nadipiscing elit ,sed do enim",
+              size: 15,
+              maxLines: 2,
+              paddingBottom: 10,
+            ),
+            CustomButton(
+                height: 50,
+                width: 160,
+                paddingRight: 100,
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    CustomText(
+                        text: "JOIN NOW",
+                        textColor: Colors.white,
+                        width: 100,
+                        bgColor: Colors.black),
+                    Icon(
+                      Icons.arrow_forward,
+                      color: Colors.white,
+                    ),
+                  ],
+                ))
+          ],
+        ),
+      ),
     );
   }
 
@@ -276,20 +322,20 @@ class _HomePageState extends State<HomePage> {
                 tooltip: 'message',
                 onPressed: () {},
               ),
-              Stack(
-                children:[
-                  Avathar(
+              Stack(children: [
+                Avathar(
                   paddingLeft: 5,
                   radius: 30,
                   bgimage: 'assets/images/avathar.png',
                 ),
-                  Positioned( left:45.0,right: 2,
-                    child:    Image.asset(
-                        'assets/images/circle.png',
-                      ),
+                Positioned(
+                  left: 45.0,
+                  right: 2,
+                  child: Image.asset(
+                    'assets/images/circle.png',
                   ),
-                ]
-              ),
+                ),
+              ]),
             ],
           ),
           Row(
@@ -349,18 +395,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  FloatingActionButton floatingActionButton() {
-    return FloatingActionButton(
-      child: Image.asset(
-        'assets/images/flotting.png',
-        width: 25,
-        height: _isVisible! ? 25.0 : 0.0,
-      ),
-      backgroundColor: _isVisible! ? Colors.orange[700] : Colors.transparent,
-      onPressed: () {},
-    );
-  }
-
   CustomCard newsView(String image, Widget child) {
     return CustomCard(
       padding: 10,
@@ -379,7 +413,6 @@ class _HomePageState extends State<HomePage> {
               Positioned(top: 30.0, left: 240.0, right: 30.0, child: child),
             ],
           ),
-
           CustomText(
               padding: 20,
               text: "Third Edition of the 60FT Dhow \nDalma Race",
@@ -387,12 +420,13 @@ class _HomePageState extends State<HomePage> {
               maxLines: 2,
               fontWeight: FontWeight.bold),
           CustomText(
-              paddingLeft: 20,paddingRight: 20,
-              text: "Under the patronage of His Highness Sheikh \nHamdan Bin Zayed Al Nahyan, Ruler's...More",
+              paddingLeft: 20,
+              paddingRight: 20,
+              text:
+                  "Under the patronage of His Highness Sheikh \nHamdan Bin Zayed Al Nahyan, Ruler's...More",
               textColor: Colors.grey,
               maxLines: 2,
               size: 15),
-
           newsBottomView(),
         ],
       ),
@@ -466,6 +500,23 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  FloatingActionButton floatingActionButton() {
+    return FloatingActionButton(
+      child: Image.asset(
+        'assets/images/flotting.png',
+        width: 25,
+        height: _isVisible! ? 25.0 : 0.0,
+      ),
+      backgroundColor: _isVisible! ? Colors.orange[700] : Colors.transparent,
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ImageView()),
+        );
+      },
+    );
+  }
 }
 
 class BottomAppBarView extends StatelessWidget {
@@ -484,7 +535,8 @@ class BottomAppBarView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomAppBar(
         shape: CircularNotchedRectangle(),
-        child: Container( margin: EdgeInsets.only(left: 16, right: 16),
+        child: Container(
+          margin: EdgeInsets.only(left: 16, right: 16),
           height: _isVisible! ? 60.0 : 0.0,
           child: _isVisible!
               ? Row(
@@ -492,17 +544,22 @@ class BottomAppBarView extends StatelessWidget {
                   children: <Widget>[
                     IconButton(
                       icon: new Image.asset(
-                        'assets/images/homed.png',width: width,
+                        'assets/images/homed.png',
+                        width: width,
                       ),
                       iconSize: iconSize,
                       padding: EdgeInsets.fromLTRB(15, 5, 0, 5),
                       onPressed: () {
-                        HomePage();
+                        Navigator.pop(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ImageView()));
                       },
                     ),
                     IconButton(
                       icon: new Image.asset(
-                        'assets/images/likes.png',width: width,
+                        'assets/images/likes.png',
+                        width: width,
                       ),
                       iconSize: iconSize,
                       padding: EdgeInsets.fromLTRB(0, 5, 20, 5),
@@ -510,7 +567,8 @@ class BottomAppBarView extends StatelessWidget {
                     ),
                     IconButton(
                       icon: new Image.asset(
-                        'assets/images/calender.png',width: width,
+                        'assets/images/calender.png',
+                        width: width,
                       ),
                       iconSize: iconSize,
                       padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
@@ -518,7 +576,8 @@ class BottomAppBarView extends StatelessWidget {
                     ),
                     IconButton(
                       icon: new Image.asset(
-                        'assets/images/aaaa.png',width: width,
+                        'assets/images/aaaa.png',
+                        width: width,
                       ),
                       iconSize: iconSize,
                       padding: EdgeInsets.fromLTRB(0, 10, 0, 5),

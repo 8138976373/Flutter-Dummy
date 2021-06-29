@@ -47,19 +47,27 @@ class CustomContainerWithBgImage extends StatelessWidget {
       this.borderWidth,
       this.constraints,
       this.boxShape,
-      this.child}): super(key: key);
+      this.child})
+      : super(key: key);
+
+  double? setHeight() {
+    if (this.height == 0 || this.height == null) {
+      return this.height = 0;
+    } else {
+      return this.height;
+    }
+  }
 
   BoxShape? setBoxShape() {
-    if(this.boxShape == null ){
+    if (this.boxShape == null) {
       return this.boxShape = BoxShape.rectangle;
-    }
-    else{
+    } else {
       return this.boxShape;
     }
   }
 
   Color? setBorderColor() {
-    if ( this.borderColor == null) {
+    if (this.borderColor == null) {
       return this.borderColor = Colors.transparent;
     } else {
       return this.borderColor;
@@ -133,7 +141,7 @@ class CustomContainerWithBgImage extends StatelessWidget {
   }
 
   double? setRadius() {
-    if (this.radius == 0 || this.radius == null ) {
+    if (this.radius == 0 || this.radius == null) {
       return this.radius = 0.0;
     } else {
       return this.radius;
@@ -148,17 +156,16 @@ class CustomContainerWithBgImage extends StatelessWidget {
     }
   }
 
-  Widget? setChild(){
-  if (child == null && (constraints == null || !constraints!.isTight)) {
-   return child = LimitedBox(
-    maxWidth: 0.0,
-    maxHeight: 0.0,
-    child: ConstrainedBox(constraints: const BoxConstraints.expand()),
-  );
-  }
-  else{
-    return child;
-  }
+  Widget? setChild() {
+    if (child == null && (constraints == null || !constraints!.isTight)) {
+      return child = LimitedBox(
+        maxWidth: 0.0,
+        maxHeight: 0.0,
+        child: ConstrainedBox(constraints: const BoxConstraints.expand()),
+      );
+    } else {
+      return child;
+    }
   }
 
   @override
@@ -167,13 +174,12 @@ class CustomContainerWithBgImage extends StatelessWidget {
         padding: setPadding(),
         margin: setMargin(),
         decoration: BoxDecoration(
-            color: setBackGroundColor(),
-            borderRadius: BorderRadius.all(Radius.circular(setRadius()!)),
-            image: DecorationImage(
-              image: AssetImage(setImage()!),
-              fit: setBoxFit(),
-
-            ),
+          color: setBackGroundColor(),
+          borderRadius: BorderRadius.all(Radius.circular(setRadius()!)),
+          image: DecorationImage(
+            image: AssetImage(setImage()!),
+            fit: setBoxFit(),
+          ),
           shape: setBoxShape()!,
           border: Border.all(
             color: setBorderColor()!,
@@ -182,7 +188,6 @@ class CustomContainerWithBgImage extends StatelessWidget {
         ),
         child: setChild(),
         width: width,
-        height: height);
+        height: setHeight());
   }
-
 }
