@@ -1,4 +1,3 @@
-import 'package:dummy/Views/homepage.dart';
 import 'package:dummy/Views/imagecontainer.dart';
 import 'package:dummy/controller/imagecontroller.dart';
 import 'package:flutter/cupertino.dart';
@@ -36,12 +35,9 @@ class ImageView extends StatelessWidget {
                 Expanded(
                   child: Text(
                     'Images',
-                    style: TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.w900),
+                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.w900),
                   ),
                 ),
-               
                 IconButton(icon: Icon(Icons.grid_view), onPressed: () {}),
               ],
             ),
@@ -67,8 +63,15 @@ class ImageView extends StatelessWidget {
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton:
-      FloatingActionButton(child:  new Image.asset('assets/images/flotting.png',width: 25,height: 25,),backgroundColor: Colors.orange[700], onPressed: (){},),
+      floatingActionButton: FloatingActionButton(
+        child: new Image.asset(
+          'assets/images/flotting.png',
+          width: 25,
+          height: 25,
+        ),
+        backgroundColor: Colors.orange[700],
+        onPressed: () {},
+      ),
       bottomNavigationBar: BottomAppBar(
           shape: CircularNotchedRectangle(),
           child: Container(
@@ -76,12 +79,41 @@ class ImageView extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                IconButton( icon:new Image.asset('assets/images/homed.png',),iconSize:iconSize,padding:EdgeInsets.fromLTRB(15,5,0,5),onPressed: (){
-                  HomePage();
-                },),
-                IconButton( icon:new Image.asset('assets/images/likes.png',),iconSize:iconSize,padding:EdgeInsets.fromLTRB(0,0,20,0), onPressed: (){},),
-                IconButton( icon:new Image.asset('assets/images/calender.png',),iconSize:iconSize,padding:EdgeInsets.fromLTRB(20,5,0,0), onPressed: (){},),
-                IconButton( icon:new Image.asset('assets/images/aaaa.png',), iconSize:iconSize, padding:EdgeInsets.fromLTRB(0,10,15.0,5),onPressed: (){},),
+                IconButton(
+                  icon: new Image.asset(
+                    'assets/images/homed.png',
+                  ),
+                  iconSize: iconSize,
+                  padding: EdgeInsets.fromLTRB(15, 5, 0, 5),
+                  onPressed: () {
+                    Navigator.pop(context,
+                        MaterialPageRoute(builder: (context) => ImageView()));
+                  },
+                ),
+                IconButton(
+                  icon: new Image.asset(
+                    'assets/images/likes.png',
+                  ),
+                  iconSize: iconSize,
+                  padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: new Image.asset(
+                    'assets/images/calender.png',
+                  ),
+                  iconSize: iconSize,
+                  padding: EdgeInsets.fromLTRB(20, 5, 0, 0),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: new Image.asset(
+                    'assets/images/aaaa.png',
+                  ),
+                  iconSize: iconSize,
+                  padding: EdgeInsets.fromLTRB(0, 10, 15.0, 5),
+                  onPressed: () {},
+                ),
               ],
             ),
           )),
