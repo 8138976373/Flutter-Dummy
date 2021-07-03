@@ -3,14 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ImageContainer extends StatelessWidget {
-   final Images images;
+  final Images images;
 
   const ImageContainer(this.images);
 
-
   @override
   Widget build(BuildContext context) {
-    var url = images.urls!.full;
+    String url = images.urls!.full!;
     return Card(
       elevation: 2,
       child: Padding(
@@ -28,7 +27,7 @@ class ImageContainer extends StatelessWidget {
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Image.network(
-                    url!,
+                    url,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -38,8 +37,7 @@ class ImageContainer extends StatelessWidget {
             Text(
               images.id!,
               maxLines: 2,
-              style:
-              TextStyle( fontWeight: FontWeight.w800),
+              style: TextStyle(fontWeight: FontWeight.w800),
               overflow: TextOverflow.ellipsis,
             ),
             SizedBox(height: 8),
@@ -66,8 +64,7 @@ class ImageContainer extends StatelessWidget {
                 ),
               ),
             SizedBox(height: 8),
-            Text('\$${images.likes}',
-                style: TextStyle(fontSize: 32)),
+            Text('\$${images.likes}', style: TextStyle(fontSize: 32)),
           ],
         ),
       ),
