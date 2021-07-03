@@ -73,6 +73,7 @@ class LoginPage extends StatelessWidget {
     return TextField(
         controller: nameController,
         style: style,
+        onChanged:(String value){} ,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: s,
