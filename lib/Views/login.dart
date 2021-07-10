@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:dummy/Views/homepage.dart';
 import 'package:dummy/Widget/Avathar.dart';
 import 'package:dummy/Widget/CustPadding.dart';
@@ -73,7 +74,7 @@ class LoginPage extends StatelessWidget {
     return TextField(
         controller: nameController,
         style: style,
-        onChanged:(String value){} ,
+        onChanged: (String value) {},
         decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: s,
@@ -115,8 +116,13 @@ class LoginButton extends StatefulWidget {
 }
 
 class _LoginButtonState extends State<LoginButton> {
+  Dio? dio;
+  String? firstPostTitle;
+  bool? isLoading;
+
   TextEditingController nameController = new TextEditingController();
   TextEditingController phoneController = new TextEditingController();
+
   TextStyle style = TextStyle(
       fontFamily: 'Montserrat',
       fontSize: 20.0,
@@ -128,6 +134,14 @@ class _LoginButtonState extends State<LoginButton> {
 
   _LoginButtonState(
       this.text, this.color, this.nameController, this.phoneController);
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    dio = Dio();
+    firstPostTitle = 'Press the button 👇';
+    isLoading = false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -147,18 +161,24 @@ class _LoginButtonState extends State<LoginButton> {
               );
             });
           } else {
-            final snackBar = SnackBar(
-              content: Text('User name or password error!!'),
-              action: SnackBarAction(
-                label: 'Undo',
-                onPressed: () {
-                  Navigator.pop(context,
-                      MaterialPageRoute(builder: (context) => HomePage()));
-                  // Some code to undo the change.
-                },
-              ),
-            );
-            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            setState(() {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage()),
+              );
+            });
+            // final snackBar = SnackBar(
+            //   content: Text('User name or password error!!'),
+            //   action: SnackBarAction(
+            //     label: 'Undo',
+            //     onPressed: () {
+            //       Navigator.pop(context,
+            //           MaterialPageRoute(builder: (context) => HomePage()));
+            //       // Some code to undo the change.
+            //     },
+            //   ),
+            // );
+            // ScaffoldMessenger.of(context).showSnackBar(snackBar);
           }
           // child: Text('Show SnackBar'),
         },
