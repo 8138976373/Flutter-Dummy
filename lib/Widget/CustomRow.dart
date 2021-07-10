@@ -100,7 +100,6 @@ class CustomRow extends StatelessWidget {
     if (this.elevation == 0 || this.elevation == null) {
       return this.elevation = 10.0;
     } else {
-      print(this.elevation);
       return this.elevation;
     }
   }
