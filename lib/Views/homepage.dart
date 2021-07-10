@@ -1,4 +1,4 @@
-import 'package:dummy/Views/imageview.dart';
+import 'package:dummy/ImageGetXApp/views/imageview.dart';
 import 'package:dummy/Widget/Avathar.dart';
 import 'package:dummy/Widget/CustPadding.dart';
 import 'package:dummy/Widget/CustomBgImageContainer.dart';
@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
         ]));
   }
 
-  CustomCard sixthView(BuildContext context, double screenWidth) {
+  CustomCard sixthView(BuildContext context1, double screenWidth) {
     return CustomCard(
       padding: 10,
       child: Column(
@@ -208,20 +208,11 @@ class _HomePageState extends State<HomePage> {
       child: CustPadding(
         padding: 20,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            CustPadding(
-              // mainAxisAlignment:MainAxisAlignment.start,
-              bottom: 20,
-              right: 220,
-              child: Stack(
-                alignment: Alignment.topLeft,
-                children: <Widget>[
-                  Image.asset(
-                    image,
-                    width: 70,
-                  )
-                ],
-              ),
+            Image.asset(
+              image,
+              width: 70,
             ),
             CustomText(
                 text: "Request for your first license ",
@@ -273,6 +264,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   CustomCard secondView(String image) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return newsView(
       image,
       CustomCard(
@@ -281,6 +273,8 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: <Widget>[
             CustomText(
+              width: screenWidth / 6,
+              height: screenWidth / 12,
               paddingTop: 10,
               text: "25",
               size: 20,
@@ -288,6 +282,8 @@ class _HomePageState extends State<HomePage> {
               alignment: MainAxisAlignment.center,
             ),
             CustomText(
+              width: screenWidth / 6,
+              height: screenWidth / 12,
               paddingBottom: 10,
               text: "JUNE",
               size: 20,
@@ -396,6 +392,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   CustomCard newsView(String image, Widget child) {
+    final screenHeight = MediaQuery.of(context).size.width;
     return CustomCard(
       padding: 10,
       child: Column(
@@ -404,13 +401,16 @@ class _HomePageState extends State<HomePage> {
             children: [
               CustomContainerWithBgImage(
                 margin: 15,
-                height: 230,
+                height: screenHeight / 2,
                 radius: 10,
                 fit: BoxFit.fill,
-                // boxShape: BoxShape.circle,
                 image: image,
               ),
-              Positioned(top: 30.0, left: 240.0, right: 30.0, child: child),
+              Positioned(
+                child: child,
+                right: 30,
+                top: 30,
+              ),
             ],
           ),
           CustomText(
@@ -529,7 +529,7 @@ class BottomAppBarView extends StatelessWidget {
 
   final bool? _isVisible;
   final double iconSize;
-  double width = 25;
+  final double width = 25;
 
   @override
   Widget build(BuildContext context) {

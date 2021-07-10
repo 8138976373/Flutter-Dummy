@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 class CustomCard extends StatelessWidget {
   Widget? child;
   double? radius;
+  double? height;
+  double? width;
   double? margin;
   double? marginRight;
   double? marginLeft;
@@ -21,6 +23,8 @@ class CustomCard extends StatelessWidget {
   CustomCard(
       {Key? key,
       this.child,
+      this.height,
+      this.width,
       this.radius,
       this.margin,
       this.marginLeft,
@@ -100,7 +104,6 @@ class CustomCard extends StatelessWidget {
     if (this.elevation == 0 || this.elevation == null) {
       return this.elevation = 10.0;
     } else {
-      print(this.elevation);
       return this.elevation;
     }
   }
@@ -125,16 +128,18 @@ class CustomCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: setPadding()!,
-      child: Card(
-        borderOnForeground: setBorderOnForeground()!,
-        color: setColor(),
-        margin: setMargin(),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(setRadius()!),
+      child: Container(height: height,width: width,
+        child: Card(
+          borderOnForeground: setBorderOnForeground()!,
+          color: setColor(),
+          margin: setMargin(),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(setRadius()!),
+          ),
+          child: child,
+          shadowColor: setshadowColor(),
+          elevation: setElevation(),
         ),
-        child: child,
-        shadowColor: setshadowColor(),
-        elevation: setElevation(),
       ),
     );
   }

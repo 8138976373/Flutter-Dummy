@@ -1,15 +1,16 @@
-import 'package:dummy/Views/imagecontainer.dart';
-import 'package:dummy/Widget/CustomButton.dart';
 import 'package:dummy/Widget/CustomText.dart';
-import 'package:dummy/controller/imagecontroller.dart';
-import 'package:dummy/controller/networkcontroller.dart';
+import 'package:dummy/commoncontroller/networkcontroller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 
+import '../imagegetxcontroller.dart';
+import 'imagecontainer.dart';
+
 class ImageView extends StatelessWidget {
-  final ImageController imageController = Get.put(ImageController());
+  final ImageController imageController =
+      Get.put(ImageController(), tag: 'images');
   final NetworkController networkController = Get.put(NetworkController());
 
   double iconSize = 20;
@@ -106,7 +107,7 @@ class ImageView extends StatelessWidget {
           padding: EdgeInsets.all(5),
           mainAxisSpacing: 16,
           itemBuilder: (context, index) {
-            return ImageContainer(imageController.imageList[index]);
+            return ImageContainer(imageController.imageList[index], index);
           },
           staggeredTileBuilder: (index) => StaggeredTile.fit(1),
         );

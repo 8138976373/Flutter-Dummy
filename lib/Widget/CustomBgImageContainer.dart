@@ -29,7 +29,7 @@ class CustomContainerWithBgImage extends StatelessWidget {
       {Key? key,
       this.image,
       this.fit,
-      this.height,
+      required this.height,
       this.width,
       this.margin,
       this.marginLeft,
